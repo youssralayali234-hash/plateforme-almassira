@@ -10,34 +10,7 @@ function Field({name,label,value,onChange,multiline=false,type='text',required=f
 function App(){const {data:session,status}=useSession();const [space,setSpace]=useState('');const [pendingSpace,setPendingSpace]=useState('');const [tab,setTab]=useState('courses');const [items,setItems]=useState<Item[]>([]);const [edit,setEdit]=useState<Item|null>(null);const [loading,setLoading]=useState(false);const [notice,setNotice]=useState('');const [credentials,setCredentials]=useState({identifier:'',password:''});const [authRole,setAuthRole]=useState('teacher');const [selected,setSelected]=useState<Item|null>(null);const [courses,setCourses]=useState<Item[]>([]);const [assessments,setAssessments]=useState<Item[]>([]);const [answers,setAnswers]=useState<Record<string,string>>({});const [identity,setIdentity]=useState({full_name:'',class_name:'',student_number:'',student_code:''});const [parentCode,setParentCode]=useState('');const [parentResult,setParentResult]=useState<Item|null>(null);
  const load=useCallback(async()=>{if(!space||!['teacher','admin'].includes(space)||!session)return;setLoading(true);setNotice('');try{setItems(await api(tab))}catch(e:any){setNotice(e.message)}finally{setLoading(false)}},[space,tab,session]);useEffect(()=>{load()},[load]);
  useEffect(()=>{if(space!=='student')return;Promise.all([api('public/courses'),api('public/assessments')]).then(([c,a])=>{setCourses(c);setAssessments(a)}).catch(e=>setNotice(e.message))},[space]);
- const authenticate = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (loading) return;
-
-  setLoading(true);
-  setNotice('');
-
-  try {
-    const result = await signIn('credentials', {
-      identifier: credentials.identifier.trim(),
-      password: credentials.password,
-      redirect: false
-    });
-
-    if (!result || result.error || !result.ok) {
-      throw new Error('Identifiant ou mot de passe incorrect');
-    }
-
-    window.location.reload();
-
-  } catch (error: any) {
-    setNotice(
-      error?.message || 'Connexion impossible. Veuillez réessayer.'
-    );
-  } finally {
-    setLoading(false);
-  }
-};
+ const authenticate=async(e:React.FormEvent)=>{e.preventDefault();setLoading(true);setNotice('');try{const r=await signIn('credentials',{identifier:credentials.identifier,password:credentials.password,redirect:false});if(r?.error)throw Error('Identifiant ou mot de passe incorrect');}catch(e:any){setNotice(e.message)}finally{setLoading(false)}};
  const save=async(e:React.FormEvent)=>{e.preventDefault();if(!edit)return;setLoading(true);setNotice('');try{const data={...edit};delete data.id;if(tab==='assessments'){delete data.questions_text;data.questions=data.questions||[];}if(tab==='users'){data.role=authRole;if(!data.password)delete data.password;}if(tab==='courses'||tab==='assessments')data.published=Boolean(data.published);if(tab==='assessments')data.kind=data.kind||'exam';await api(edit.id?`${tab}/${encodeURIComponent(edit.id)}`:tab,edit.id?'PUT':'POST',{data});setEdit(null);await load()}catch(e:any){setNotice(e.message)}finally{setLoading(false)}};
  const del=async(id:string)=>{if(!window.confirm('Confirmer la suppression ?'))return;try{await api(tab+'/'+encodeURIComponent(id),'DELETE');await load()}catch(e:any){setNotice(e.message)}};
  const submit=async(e:React.FormEvent)=>{e.preventDefault();if(!selected)return;setLoading(true);setNotice('');try{await api('public/submit','POST',{assessment_id:selected.id,...identity,answers});setNotice('Votre copie a été enregistrée.');setSelected(null);setAnswers({})}catch(e:any){setNotice(e.message)}finally{setLoading(false)}};
