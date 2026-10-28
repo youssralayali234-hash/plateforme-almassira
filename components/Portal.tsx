@@ -534,7 +534,9 @@ function App() {
 
         {!space ? (
          
-<section className="mx-auto max-w-4xl pt-7 md:pt-14 pb-12 flex flex-col justify-end min-h-[75vh]">
+
+<section className="mx-auto max-w-4xl pt-7 md:pt-14 pb-12 flex flex-col justify-end min-h-[75vh] -translate-y-[3cm]">
+
 
        
 
