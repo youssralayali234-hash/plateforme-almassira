@@ -534,13 +534,17 @@ function App() {
 
         {!space ? (
          
-<section className="mx-auto max-w-4xl pt-7 md:pt-14 pb-12 flex flex-col justify-end min-h-[65vh] md:min-h-[60vh] lg:min-h-[55vh] -translate-y-[1cm] md:-translate-y-[2cm] lg:-translate-y-[3cm]">
+
+<section className="mx-auto w-full max-w-3xl min-h-[65vh] flex flex-col justify-center px-2 py-6">
+
 
 
 
        
 
-            <div className="rounded-[25px] border border-white bg-white/85 shadow-lg p-5 md:p-9">
+            
+<div className="w-full max-w-2xl mx-auto rounded-[20px] border border-white bg-white/85 shadow-lg p-3 md:p-5">
+
               <div className="grid grid-cols-2 gap-3 md:gap-6">
                 {[
                   ['student', 'Élève', 'bg-blue-100'],
