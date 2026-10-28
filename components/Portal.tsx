@@ -523,7 +523,7 @@ function App() {
 <main
   className="mx-auto w-full max-w-7xl flex-1 px-5 py-9"
   style={!space ? {
-    backgroundImage: "url('/Cour%20baign%C3%A9e%20de%20soleil%2C%20espace%20informatique%20marocain.png')",
+    backgroundImage: "url('/fond-accueil.png')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
