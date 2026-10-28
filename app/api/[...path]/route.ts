@@ -12,7 +12,7 @@ export const runtime='nodejs';
 
 const response=(data:any,status=200)=>NextResponse.json(data,{status});
 const error=(detail:string,status=400)=>response({detail},status);
-const normRole=(x:any)=>['admin','teacher','student','parent'].includes(x);
+const normRole=(x:any)=>['admin','teacher','student','parent'].includes(x.role);
 const documentStore=()=>{
  if(!process.env.SUPABASE_URL||!process.env.SUPABASE_SERVICE_ROLE_KEY)
   throw new Error('Stockage Supabase non configuré');
@@ -40,7 +40,6 @@ async function serve(req:NextRequest,parts:string[],method:string){
   return response((await read('assessments')).filter(x=>x.published).map(x=>({
    id:x.id,title:x.title||'Évaluation',description:x.description||'',
    class_name:x.class_name||'',kind:x.kind||'exam',
-   file_url:x.file_url||null,image_urls:x.image_urls||[],
    questions:(x.questions||[]).map((q:any)=>({
     id:q.id,type:q.type,text:q.text,options:q.options||[],points:q.points||1
    }))
@@ -48,7 +47,7 @@ async function serve(req:NextRequest,parts:string[],method:string){
 
  if(method==='GET'&&first==='public'&&second==='courses')
   return response((await read('courses')).filter(x=>x.published).map(x=>
-   Object.fromEntries(['id','title','description','class_name','content','file_url','image_urls'].map(k=>[k,x[k]]))
+   Object.fromEntries(['id','title','description','class_name','content'].map(k=>[k,x[k]]))
   ));
 
  if(method==='POST'&&first==='public'&&second==='submit'){
