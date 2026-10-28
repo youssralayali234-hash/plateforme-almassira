@@ -39,7 +39,12 @@ async function serve(req:NextRequest,parts:string[],method:string){
  if(method==='GET'&&first==='public'&&second==='assessments')
   return response((await read('assessments')).filter(x=>x.published).map(x=>({
    id:x.id,title:x.title||'Évaluation',description:x.description||'',
-   class_name:x.class_name||'',kind:x.kind||'exam',
+   
+class_name:x.class_name||'',
+kind:x.kind||'exam',
+file_url:x.file_url||null,
+image_urls:x.image_urls||[],
+
    questions:(x.questions||[]).map((q:any)=>({
     id:q.id,type:q.type,text:q.text,options:q.options||[],points:q.points||1
    }))
