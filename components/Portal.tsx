@@ -576,7 +576,9 @@ function App() {
             {space === 'student' && (
               <div className="grid lg:grid-cols-[310px_1fr] gap-6">
                 <aside className="panel">
-                  <h2 className="section-title">Mes cours</h2>
+                  
+<h2 className="text-lg font-extrabold text-blue-700 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg px-4 py-2 mb-4">Mes cours</h2>
+
 
                   {courses.length ? (
                     courses.map(c => (
@@ -595,7 +597,9 @@ function App() {
                     <p className="empty">Aucun cours publié.</p>
                   )}
 
-                  <h2 className="section-title mt-7">Examens</h2>
+               
+<h2 className="text-lg font-extrabold text-blue-700 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg px-4 py-2 mt-7 mb-4">Examens</h2>
+
 
                   {assessments
                     .filter(a => a.kind === 'exam')
@@ -613,7 +617,9 @@ function App() {
                       </button>
                     ))}
 
-                  <h2 className="section-title mt-7">Exercices</h2>
+                
+<h2 className="text-lg font-extrabold text-blue-700 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg px-4 py-2 mt-7 mb-4">Exercices</h2>
+
 
                   {assessments
                     .filter(a => a.kind !== 'exam')
