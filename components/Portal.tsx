@@ -533,9 +533,11 @@ function App() {
 >
 
         {!space ? (
-          <section className="mx-auto max-w-4xl pt-7 md:pt-14 pb-12">
+         
+<section className="mx-auto max-w-4xl pt-7 md:pt-14 pb-12 flex flex-col justify-end min-h-[75vh]">
+
         <h1 className="text-xl md:text-2xl font-extrabold mb-7 tracking-wide drop-shadow-sm" style={{ color: '#2563EB' }}>
-  Accéder à votre espace
+  Accéder à votre espace :
 </h1>
 
             <div className="rounded-[25px] border border-white bg-white/85 shadow-lg p-5 md:p-9">
