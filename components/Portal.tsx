@@ -525,8 +525,10 @@ function App() {
   className="mx-auto w-full max-w-7xl flex-1 px-5 py-9"
   style={!space ? {
     backgroundImage: "url('/imagefinal.png')",
-    backgroundSize: '100% 80%',
-    backgroundPosition: 'center top',
+    
+backgroundSize: '100% 100%',
+backgroundPosition: 'center bottom',
+
     backgroundRepeat: 'no-repeat',
     minHeight: '85vh',
     maxWidth: '100%'
@@ -574,8 +576,12 @@ function App() {
         ) : (
           <>
             {space === 'student' && (
-              <div className="grid lg:grid-cols-[310px_1fr] gap-6">
-                <aside className="panel">
+             
+<div className={selected?._type === 'course' ? 'block w-full' : 'grid lg:grid-cols-[310px_1fr] gap-6'}>
+
+                
+<aside className={selected?._type === 'course' ? 'hidden' : 'panel'}>
+
                   
 <h2 className="text-lg font-extrabold text-blue-700 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg px-4 py-2 mb-4">Mes cours</h2>
 
@@ -638,10 +644,22 @@ function App() {
                     ))}
                 </aside>
 
-                <section className="panel">
-                  <h2 className="section-title">
-                    {selected?.title || 'Mes activités'}
-                  </h2>
+               
+<section className={selected?._type === 'course' ? 'panel w-full min-h-[80vh]' : 'panel'}>
+  {selected?._type === 'course' && (
+    <button
+      type="button"
+      onClick={() => setSelected(null)}
+      className="mb-6 rounded-xl bg-blue-600 px-5 py-3 font-bold text-white shadow-md hover:bg-blue-700"
+    >
+      ← Retour aux cours
+    </button>
+  )}
+
+  <h2 className="section-title">
+    {selected?.title || 'Mes activités'}
+  </h2>
+
 
                   {!selected ? (
                     <p className="empty">
