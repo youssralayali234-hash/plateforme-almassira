@@ -47,7 +47,9 @@ async function serve(req:NextRequest,parts:string[],method:string){
 
  if(method==='GET'&&first==='public'&&second==='courses')
   return response((await read('courses')).filter(x=>x.published).map(x=>
-   Object.fromEntries(['id','title','description','class_name','content'].map(k=>[k,x[k]]))
+   Object.fromEntries(
+['id','title','description','class_name','content','file_url','image_urls']
+)
   ));
 
  if(method==='POST'&&first==='public'&&second==='submit'){
