@@ -520,17 +520,19 @@ function App() {
       </header>
 
     
+
 <main
   className="mx-auto w-full max-w-7xl flex-1 px-5 py-9"
   style={!space ? {
     backgroundImage: "url('/imagefinal.png')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
+    backgroundSize: '100% 80%',
+    backgroundPosition: 'center top',
     backgroundRepeat: 'no-repeat',
     minHeight: '85vh',
     maxWidth: '100%'
   } : undefined}
 >
+
 
         {!space ? (
          
