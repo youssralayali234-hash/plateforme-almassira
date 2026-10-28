@@ -526,8 +526,10 @@ function App() {
   style={!space ? {
     backgroundImage: "url('/imagefinal.png')",
     
-backgroundSize: '100% 100%',
+          
+backgroundSize: 'cover',
 backgroundPosition: 'center bottom',
+
 
     backgroundRepeat: 'no-repeat',
     minHeight: '85vh',
@@ -539,7 +541,8 @@ backgroundPosition: 'center bottom',
         {!space ? (
          
 
-<section className="mx-auto w-full max-w-3xl min-h-[65vh] flex flex-col justify-center px-2 py-6">
+
+<section className="mx-auto w-full max-w-3xl min-h-[65vh] flex flex-col justify-center px-2 py-6 translate-y-[1.5cm]">
 
 
 
