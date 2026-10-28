@@ -519,7 +519,19 @@ function App() {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-5 py-9">
+      
+<main
+  className="mx-auto w-full max-w-7xl flex-1 px-5 py-9"
+  style={!space ? {
+    backgroundImage: "url('/Cour%20baign%C3%A9e%20de%20soleil%2C%20espace%20informatique%20marocain.png')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '85vh',
+    maxWidth: '100%'
+  } : undefined}
+>
+
         {!space ? (
           <section className="mx-auto max-w-4xl pt-7 md:pt-14 pb-12">
             <h1 className="text-xl md:text-2xl font-bold mb-7">
